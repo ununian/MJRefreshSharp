@@ -1,17 +1,11 @@
 ﻿namespace MJRefresh
 {
-    public enum MJRefreshHeaderState : uint
+    public enum MJRefreshState : uint
     {
         Idle = 1,
         Pulling,
         Refreshing,
-        WillRefresh
-    }
-
-    public enum MJRefreshFooterState : uint
-    {
-        Idle = 1,
-        Refreshing,
+        WillRefresh,
         NoMoreData
     }
 }

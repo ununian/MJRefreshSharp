@@ -6,258 +6,105 @@ using UIKit;
 
 namespace MJRefresh
 {
-    //    [Verify (ConstantsInterfaceAssociation)]
-    partial interface Constants
-    {
-        // extern const CGFloat MJRefreshHeaderHeight;
-        [Field("MJRefreshHeaderHeight")]
-        nfloat MJRefreshHeaderHeight { get; }
-
-        // extern const CGFloat MJRefreshFooterHeight;
-        [Field("MJRefreshFooterHeight")]
-        nfloat MJRefreshFooterHeight { get; }
-
-        // extern const CGFloat MJRefreshFastAnimationDuration;
-        [Field("MJRefreshFastAnimationDuration")]
-        nfloat MJRefreshFastAnimationDuration { get; }
-
-        // extern const CGFloat MJRefreshSlowAnimationDuration;
-        [Field("MJRefreshSlowAnimationDuration")]
-        nfloat MJRefreshSlowAnimationDuration { get; }
-
-        // extern NSString *const MJRefreshHeaderUpdatedTimeKey;
-        [Field("MJRefreshHeaderUpdatedTimeKey")]
-        NSString MJRefreshHeaderUpdatedTimeKey { get; }
-
-        // extern NSString *const MJRefreshContentOffset;
-        [Field("MJRefreshContentOffset")]
-        NSString MJRefreshContentOffset { get; }
-
-        // extern NSString *const MJRefreshContentSize;
-        [Field("MJRefreshContentSize")]
-        NSString MJRefreshContentSize { get; }
-
-        // extern NSString *const MJRefreshPanState;
-        [Field("MJRefreshPanState")]
-        NSString MJRefreshPanState { get; }
-
-        // extern NSString *const MJRefreshHeaderStateIdleText;
-        [Field("MJRefreshHeaderStateIdleText")]
-        NSString MJRefreshHeaderStateIdleText { get; }
-
-        // extern NSString *const MJRefreshHeaderStatePullingText;
-        [Field("MJRefreshHeaderStatePullingText")]
-        NSString MJRefreshHeaderStatePullingText { get; }
-
-        // extern NSString *const MJRefreshHeaderStateRefreshingText;
-        [Field("MJRefreshHeaderStateRefreshingText")]
-        NSString MJRefreshHeaderStateRefreshingText { get; }
-
-        // extern NSString *const MJRefreshFooterStateIdleText;
-        [Field("MJRefreshFooterStateIdleText")]
-        NSString MJRefreshFooterStateIdleText { get; }
-
-        // extern NSString *const MJRefreshFooterStateRefreshingText;
-        [Field("MJRefreshFooterStateRefreshingText")]
-        NSString MJRefreshFooterStateRefreshingText { get; }
-
-        // extern NSString *const MJRefreshFooterStateNoMoreDataText;
-        [Field("MJRefreshFooterStateNoMoreDataText")]
-        NSString MJRefreshFooterStateNoMoreDataText { get; }
-    }
-
     // @interface MJRefresh (UIScrollView)
     [Category]
     [BaseType(typeof(UIScrollView))]
     interface UIScrollView_MJRefresh
     {
-        // @property (readonly, nonatomic, strong) MJRefreshHeader * header;
-        [Export("getheader")]
+        // @property (nonatomic, strong) MJRefreshHeader * header;
+        [Export("header")]
         MJRefreshHeader GetHeader();
 
-        // @property (readonly, nonatomic) MJRefreshGifHeader * gifHeader;
-        [Export("getgifHeader")]
-        MJRefreshGifHeader GetGifHeader();
+        [Export("setHeader:")]
+        void SetHeader(MJRefreshHeader header);
 
-        // @property (readonly, nonatomic) MJRefreshLegendHeader * legendHeader;
-        [Export("getlegendHeader")]
-        MJRefreshLegendHeader GetLegendHeader();
-
-        // -(MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block;
-        [Export("addLegendHeaderWithRefreshingBlock:")]
-        MJRefreshLegendHeader AddLegendHeaderWithRefreshingBlock(Action block);
-
-        // -(MJRefreshLegendHeader *)addLegendHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey;
-        [Export("addLegendHeaderWithRefreshingBlock:dateKey:")]
-        MJRefreshLegendHeader AddLegendHeaderWithRefreshingBlock(Action block, string dateKey);
-
-        // -(MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
-        [Export("addLegendHeaderWithRefreshingTarget:refreshingAction:")]
-        MJRefreshLegendHeader AddLegendHeaderWithRefreshingTarget(NSObject target, Selector action);
-
-        // -(MJRefreshLegendHeader *)addLegendHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey;
-        [Export("addLegendHeaderWithRefreshingTarget:refreshingAction:dateKey:")]
-        MJRefreshLegendHeader AddLegendHeaderWithRefreshingTarget(NSObject target, Selector action, string dateKey);
-
-        // -(MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block;
-        [Export("addGifHeaderWithRefreshingBlock:")]
-        MJRefreshGifHeader AddGifHeaderWithRefreshingBlock(Action block);
-
-        // -(MJRefreshGifHeader *)addGifHeaderWithRefreshingBlock:(void (^)())block dateKey:(NSString *)dateKey;
-        [Export("addGifHeaderWithRefreshingBlock:dateKey:")]
-        MJRefreshGifHeader AddGifHeaderWithRefreshingBlock(Action block, string dateKey);
-
-        // -(MJRefreshGifHeader *)addGifHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
-        [Export("addGifHeaderWithRefreshingTarget:refreshingAction:")]
-        MJRefreshGifHeader AddGifHeaderWithRefreshingTarget(NSObject target, Selector action);
-
-        // -(MJRefreshGifHeader *)addGifHeaderWithRefreshingTarget:(id)target refreshingAction:(SEL)action dateKey:(NSString *)dateKey;
-        [Export("addGifHeaderWithRefreshingTarget:refreshingAction:dateKey:")]
-        MJRefreshGifHeader AddGifHeaderWithRefreshingTarget(NSObject target, Selector action, string dateKey);
-
-        // -(void)removeHeader;
-        [Export("removeHeader")]
-        void RemoveHeader();
-
-        // @property (readonly, nonatomic, strong) MJRefreshFooter * footer;
-        [Export("getfooter")]
+        // @property (nonatomic, strong) MJRefreshFooter * footer;
+        [Export("footer")]
         MJRefreshFooter GetFooter();
 
-        // @property (readonly, nonatomic) MJRefreshGifFooter * gifFooter;
-        [Export("getgifFooter")]
-        MJRefreshGifFooter GetGifFooter();
-
-        // @property (readonly, nonatomic) MJRefreshLegendFooter * legendFooter;
-        [Export("getlegendFooter")]
-        MJRefreshLegendFooter GetLegendFooter();
-
-        // -(MJRefreshLegendFooter *)addLegendFooterWithRefreshingBlock:(void (^)())block;
-        [Export("addLegendFooterWithRefreshingBlock:")]
-        MJRefreshLegendFooter AddLegendFooterWithRefreshingBlock(Action block);
-
-        // -(MJRefreshLegendFooter *)addLegendFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
-        [Export("addLegendFooterWithRefreshingTarget:refreshingAction:")]
-        MJRefreshLegendFooter AddLegendFooterWithRefreshingTarget(NSObject target, Selector action);
-
-        // -(MJRefreshGifFooter *)addGifFooterWithRefreshingBlock:(void (^)())block;
-        [Export("addGifFooterWithRefreshingBlock:")]
-        MJRefreshGifFooter AddGifFooterWithRefreshingBlock(Action block);
-
-        // -(MJRefreshGifFooter *)addGifFooterWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
-        [Export("addGifFooterWithRefreshingTarget:refreshingAction:")]
-        MJRefreshGifFooter AddGifFooterWithRefreshingTarget(NSObject target, Selector action);
-
-        // -(void)removeFooter;
-        [Export("removeFooter")]
-        void RemoveFooter();
+        [Export("setFooter:")]
+        void SetFooter(MJRefreshFooter footet);
     }
 
-    // @interface MJRefreshDeprecated (UIScrollView)
-    [Category]
-    [BaseType(typeof(UIScrollView))]
-    interface UIScrollView_MJRefreshDeprecated
-    {
-        // -(void)addHeaderWithCallback:(void (^)())callback __attribute__((availability(ios, introduced=2.0, deprecated=2.0)));
-        [Availability(Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_2_0, Message = "[Sharpie.Clang.Ast.IdentifierInfo: 建议使用addLegendHeaderWithRefreshingBlock:]")]
-        [Export("addHeaderWithCallback:")]
-        void AddHeaderWithCallback(Action callback);
+    // @interface MJExtension (UIScrollView)
+    //    [Category]
+    //    [BaseType (typeof(UIScrollView))]
+    //    interface UIScrollView_MJExtension
+    //    {
+    //        // @property (assign, nonatomic) CGFloat mj_insetT;
+    //        [Export ("mj_insetT", ArgumentSemantic.Assign)]
+    //        nfloat Mj_insetT { get; set; }
+    //
+    //        // @property (assign, nonatomic) CGFloat mj_insetB;
+    //        [Export ("mj_insetB", ArgumentSemantic.Assign)]
+    //        nfloat Mj_insetB { get; set; }
+    //
+    //        // @property (assign, nonatomic) CGFloat mj_insetL;
+    //        [Export ("mj_insetL", ArgumentSemantic.Assign)]
+    //        nfloat Mj_insetL { get; set; }
+    //
+    //        // @property (assign, nonatomic) CGFloat mj_insetR;
+    //        [Export ("mj_insetR", ArgumentSemantic.Assign)]
+    //        nfloat Mj_insetR { get; set; }
+    //
+    //        // @property (assign, nonatomic) CGFloat mj_offsetX;
+    //        [Export ("mj_offsetX", ArgumentSemantic.Assign)]
+    //        nfloat Mj_offsetX { get; set; }
+    //
+    //        // @property (assign, nonatomic) CGFloat mj_offsetY;
+    //        [Export ("mj_offsetY", ArgumentSemantic.Assign)]
+    //        nfloat Mj_offsetY { get; set; }
+    //
+    //        // @property (assign, nonatomic) CGFloat mj_contentW;
+    //        [Export ("mj_contentW", ArgumentSemantic.Assign)]
+    //        nfloat Mj_contentW { get; set; }
+    //
+    //        // @property (assign, nonatomic) CGFloat mj_contentH;
+    //        [Export ("mj_contentH", ArgumentSemantic.Assign)]
+    //        nfloat Mj_contentH { get; set; }
+    //    }
 
-        // -(void)addHeaderWithCallback:(void (^)())callback dateKey:(NSString *)dateKey __attribute__((availability(ios, introduced=2.0, deprecated=2.0)));
-        [Availability(Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_2_0, Message = "[Sharpie.Clang.Ast.IdentifierInfo: 建议使用addLegendHeaderWithRefreshingBlock:dateKey:]")]
-        [Export("addHeaderWithCallback:dateKey:")]
-        void AddHeaderWithCallback(Action callback, string dateKey);
+    // @interface MJExtension (UIView)
+    //    [Category]
+    //    [BaseType (typeof(UIView))]
+    //    interface UIView_MJExtension
+    //    {
+    //        // @property (assign, nonatomic) CGFloat mj_x;
+    //        [Export ("mj_x", ArgumentSemantic.Assign)]
+    //        nfloat Mj_x { get; set; }
+    //
+    //        // @property (assign, nonatomic) CGFloat mj_y;
+    //        [Export ("mj_y", ArgumentSemantic.Assign)]
+    //        nfloat Mj_y { get; set; }
+    //
+    //        // @property (assign, nonatomic) CGFloat mj_w;
+    //        [Export ("mj_w", ArgumentSemantic.Assign)]
+    //        nfloat Mj_w { get; set; }
+    //
+    //        // @property (assign, nonatomic) CGFloat mj_h;
+    //        [Export ("mj_h", ArgumentSemantic.Assign)]
+    //        nfloat Mj_h { get; set; }
+    //
+    //        // @property (assign, nonatomic) CGSize mj_size;
+    //        [Export ("mj_size", ArgumentSemantic.Assign)]
+    //        CGSize Mj_size { get; set; }
+    //
+    //        // @property (assign, nonatomic) CGPoint mj_origin;
+    //        [Export ("mj_origin", ArgumentSemantic.Assign)]
+    //        CGPoint Mj_origin { get; set; }
+    //    }
 
-        // -(void)addHeaderWithTarget:(id)target action:(SEL)action __attribute__((availability(ios, introduced=2.0, deprecated=2.0)));
-        [Availability(Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_2_0, Message = "[Sharpie.Clang.Ast.IdentifierInfo: 建议使用addLegendHeaderWithRefreshingTarget:refreshingAction:]")]
-        [Export("addHeaderWithTarget:action:")]
-        void AddHeaderWithTarget(NSObject target, Selector action);
-
-        // -(void)addHeaderWithTarget:(id)target action:(SEL)action dateKey:(NSString *)dateKey __attribute__((availability(ios, introduced=2.0, deprecated=2.0)));
-        [Availability(Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_2_0, Message = "[Sharpie.Clang.Ast.IdentifierInfo: 建议使用addLegendHeaderWithRefreshingTarget:refreshingAction:dateKey:]")]
-        [Export("addHeaderWithTarget:action:dateKey:")]
-        void AddHeaderWithTarget(NSObject target, Selector action, string dateKey);
-
-        // -(void)headerBeginRefreshing __attribute__((availability(ios, introduced=2.0, deprecated=2.0)));
-        [Availability(Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_2_0, Message = "[Sharpie.Clang.Ast.IdentifierInfo: 建议使用[self.tableView.header beginRefreshing]]")]
-        [Export("headerBeginRefreshing")]
-        void HeaderBeginRefreshing();
-
-        // -(void)headerEndRefreshing __attribute__((availability(ios, introduced=2.0, deprecated=2.0)));
-        [Availability(Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_2_0, Message = "[Sharpie.Clang.Ast.IdentifierInfo: 建议使用[self.tableView.header endRefreshing]]")]
-        [Export("headerEndRefreshing")]
-        void HeaderEndRefreshing();
-
-        // @property (getter = isHeaderHidden, assign, nonatomic) BOOL headerHidden;
-        [Export("isHeaderHidden")]
-        bool IsHeaderHidden();
-
-        [Export("setHeaderHidden")]
-        void SetHeaderHidden(bool value);
-
-        // @property (readonly, getter = isHeaderRefreshing, assign, nonatomic) BOOL headerRefreshing;
-        [Export("isHeaderRefreshing")]
-        bool IsHeaderRefreshing();
-
-        [Export("setHeaderRefreshing")]
-        void SetHeaderRefreshing(bool value);
-
-        // -(void)addFooterWithCallback:(void (^)())callback __attribute__((availability(ios, introduced=2.0, deprecated=2.0)));
-        [Availability(Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_2_0, Message = "[Sharpie.Clang.Ast.IdentifierInfo: 建议使用addLegendFooterWithRefreshingBlock:]")]
-        [Export("addFooterWithCallback:")]
-        void AddFooterWithCallback(Action callback);
-
-        // -(void)addFooterWithTarget:(id)target action:(SEL)action __attribute__((availability(ios, introduced=2.0, deprecated=2.0)));
-        [Availability(Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_2_0, Message = "[Sharpie.Clang.Ast.IdentifierInfo: 建议使用addLegendFooterWithRefreshingTarget:refreshingAction:]")]
-        [Export("addFooterWithTarget:action:")]
-        void AddFooterWithTarget(NSObject target, Selector action);
-
-        // -(void)footerBeginRefreshing __attribute__((availability(ios, introduced=2.0, deprecated=2.0)));
-        [Availability(Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_2_0, Message = "[Sharpie.Clang.Ast.IdentifierInfo: 建议使用[self.tableView.footer beginRefreshing]]")]
-        [Export("footerBeginRefreshing")]
-        void FooterBeginRefreshing();
-
-        // -(void)footerEndRefreshing __attribute__((availability(ios, introduced=2.0, deprecated=2.0)));
-        [Availability(Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_2_0, Message = "[Sharpie.Clang.Ast.IdentifierInfo: 建议使用[self.tableView.footer endRefreshing]]")]
-        [Export("footerEndRefreshing")]
-        void FooterEndRefreshing();
-
-        // @property (getter = isFooterHidden, assign, nonatomic) BOOL footerHidden;
-        //        [Availability(Introduced = Platform.iOS_2_0, Deprecated = Platform.iOS_2_0, Message = "[Sharpie.Clang.Ast.IdentifierInfo: 建议使用self.tableView.footer.hidden]")]
-        //        [Export("footerHidden")]
-        //        bool FooterHidden { [Bind ("isFooterHidden")] get; set; }
-        [Export("isFooterHidden")]
-        bool IsFooterHidden();
-
-        [Export("setFooterHidden")]
-        void SetFooterHidden(bool value);
-
-        // @property (readonly, getter = isFooterRefreshing, assign, nonatomic) BOOL footerRefreshing;
-        [Export("isFooterRefreshing")]
-        bool IsFooterRefreshing();
-
-        [Export("setFooterRefreshing")]
-        void SetFooterRefreshing(bool value);
-    }
+ 
+    // typedef void (^MJRefreshComponentRefreshingBlock)();
+    delegate void MJRefreshComponentRefreshingBlock();
 
     // @interface MJRefreshComponent : UIView
     [BaseType(typeof(UIView))]
     interface MJRefreshComponent
     {
-        //        UIEdgeInsets _scrollViewOriginalInset;
-
-        //        [unsupported Attributed: UIScrollView *__weak] _scrollView;
-
-        // @property (nonatomic, strong) UIColor * textColor;
-        [Export("textColor", ArgumentSemantic.Strong)]
-        UIColor TextColor { get; set; }
-
-        // @property (nonatomic, strong) UIFont * font;
-        [Export("font", ArgumentSemantic.Strong)]
-        UIFont Font { get; set; }
-
-        // @property (copy, nonatomic) void (^refreshingBlock)();
+        // @property (copy, nonatomic) MJRefreshComponentRefreshingBlock refreshingBlock;
         [Export("refreshingBlock", ArgumentSemantic.Copy)]
-        Action RefreshingBlock { get; set; }
+        MJRefreshComponentRefreshingBlock RefreshingBlock { get; set; }
 
         // -(void)setRefreshingTarget:(id)target refreshingAction:(SEL)action;
         [Export("setRefreshingTarget:refreshingAction:")]
@@ -271,6 +118,10 @@ namespace MJRefresh
         [Export("refreshingAction", ArgumentSemantic.Assign)]
         Selector RefreshingAction { get; set; }
 
+        // -(void)executeRefreshingCallback;
+        [Export("executeRefreshingCallback")]
+        void ExecuteRefreshingCallback();
+
         // -(void)beginRefreshing;
         [Export("beginRefreshing")]
         void BeginRefreshing();
@@ -281,63 +132,151 @@ namespace MJRefresh
 
         // -(BOOL)isRefreshing;
         [Export("isRefreshing")]
-        //        [Verify(MethodToProperty)]
+        //        [Verify (MethodToProperty)]
         bool IsRefreshing { get; }
+
+        // @property (assign, nonatomic) MJRefreshState state;
+        [Export("state", ArgumentSemantic.Assign)]
+        MJRefreshState State { get; set; }
+
+        // @property (readonly, assign, nonatomic) UIEdgeInsets scrollViewOriginalInset;
+        [Export("scrollViewOriginalInset", ArgumentSemantic.Assign)]
+        UIEdgeInsets ScrollViewOriginalInset { get; }
+
+        // @property (readonly, nonatomic, weak) UIScrollView * scrollView;
+        [Export("scrollView", ArgumentSemantic.Weak)]
+        UIScrollView ScrollView { get; }
+
+        // -(void)prepare;
+        [Export("prepare")]
+        void Prepare();
+
+        // -(void)placeSubviews;
+        [Export("placeSubviews")]
+        void PlaceSubviews();
+
+        // -(void)scrollViewContentOffsetDidChange:(NSDictionary *)change;
+        [Export("scrollViewContentOffsetDidChange:")]
+        void ScrollViewContentOffsetDidChange(NSDictionary change);
+
+        // -(void)scrollViewContentSizeDidChange:(NSDictionary *)change;
+        [Export("scrollViewContentSizeDidChange:")]
+        void ScrollViewContentSizeDidChange(NSDictionary change);
+
+        // -(void)scrollViewContentInsetDidChange:(NSDictionary *)change;
+        [Export("scrollViewContentInsetDidChange:")]
+        void ScrollViewContentInsetDidChange(NSDictionary change);
+
+        // -(void)scrollViewPanStateDidChange:(NSDictionary *)change;
+        [Export("scrollViewPanStateDidChange:")]
+        void ScrollViewPanStateDidChange(NSDictionary change);
+
+        // @property (assign, nonatomic) CGFloat pullingPercent;
+        [Export("pullingPercent", ArgumentSemantic.Assign)]
+        nfloat PullingPercent { get; set; }
+
+        // @property (getter = isAutoChangeAlpha, assign, nonatomic) BOOL autoChangeAlpha;
+        [Export("autoChangeAlpha")]
+        bool AutoChangeAlpha { [Bind ("isAutoChangeAlpha")] get; set; }
+    }
+
+    // @interface MJRefresh (UILabel)
+    [Category]
+    [BaseType(typeof(UILabel))]
+    interface UILabel_MJRefresh
+    {
+        // +(instancetype)label;
+        [Static]
+        [Export("label")]
+        UILabel Label();
     }
 
     // @interface MJRefreshHeader : MJRefreshComponent
     [BaseType(typeof(MJRefreshComponent))]
     interface MJRefreshHeader
     {
-        // @property (copy, nonatomic) NSString * dateKey;
-        [Export("dateKey")]
-        string DateKey { get; set; }
+        // +(instancetype)headerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
+        [Static]
+        [Export("headerWithRefreshingBlock:")]
+        MJRefreshHeader HeaderWithRefreshingBlock(MJRefreshComponentRefreshingBlock refreshingBlock);
 
-        // @property (copy, nonatomic) NSString * (^updatedTimeTitle)(NSDate *);
-        [Export("updatedTimeTitle", ArgumentSemantic.Copy)]
-        Func<NSDate, NSString> UpdatedTimeTitle { get; set; }
+        // +(instancetype)headerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
+        [Static]
+        [Export("headerWithRefreshingTarget:refreshingAction:")]
+        MJRefreshHeader HeaderWithRefreshingTarget(NSObject target, Selector action);
 
-        // -(void)setTitle:(NSString *)title forState:(MJRefreshHeaderState)state;
-        [Export("setTitle:forState:")]
-        void SetTitle(string title, MJRefreshHeaderState state);
+        // @property (copy, nonatomic) NSString * lastUpdatedTimeKey;
+        [Export("lastUpdatedTimeKey")]
+        string LastUpdatedTimeKey { get; set; }
 
-        // @property (assign, nonatomic) MJRefreshHeaderState state;
-        [Export("state", ArgumentSemantic.Assign)]
-        MJRefreshHeaderState State { get; set; }
-
-        // @property (getter = isStateHidden, assign, nonatomic) BOOL stateHidden;
-        [Export("stateHidden")]
-        bool StateHidden { [Bind ("isStateHidden")] get; set; }
-
-        // @property (getter = isUpdatedTimeHidden, assign, nonatomic) BOOL updatedTimeHidden;
-        [Export("updatedTimeHidden")]
-        bool UpdatedTimeHidden { [Bind ("isUpdatedTimeHidden")] get; set; }
-
-        // @property (assign, nonatomic) CGFloat pullingPercent;
-        [Export("pullingPercent", ArgumentSemantic.Assign)]
-        nfloat PullingPercent { get; set; }
+        // @property (readonly, nonatomic, strong) NSDate * lastUpdatedTime;
+        [Export("lastUpdatedTime", ArgumentSemantic.Strong)]
+        NSDate LastUpdatedTime { get; }
     }
 
-    // @interface MJRefreshGifHeader : MJRefreshHeader
+    // @interface MJRefreshStateHeader : MJRefreshHeader
     [BaseType(typeof(MJRefreshHeader))]
+    interface MJRefreshStateHeader
+    {
+        // @property (copy, nonatomic) NSString * (^lastUpdatedTimeText)(NSDate *);
+        [Export("lastUpdatedTimeText", ArgumentSemantic.Copy)]
+        Func<NSDate, NSString> LastUpdatedTimeText { get; set; }
+
+        // @property (readonly, nonatomic, weak) UILabel * lastUpdatedTimeLabel;
+        [Export("lastUpdatedTimeLabel", ArgumentSemantic.Weak)]
+        UILabel LastUpdatedTimeLabel { get; }
+
+        // @property (readonly, nonatomic, weak) UILabel * stateLabel;
+        [Export("stateLabel", ArgumentSemantic.Weak)]
+        UILabel StateLabel { get; }
+
+        // -(void)setTitle:(NSString *)title forState:(MJRefreshState)state;
+        [Export("setTitle:forState:")]
+        void SetTitle(string title, MJRefreshState state);
+    }
+
+    // @interface MJRefreshNormalHeader : MJRefreshStateHeader
+    [BaseType(typeof(MJRefreshStateHeader))]
+    interface MJRefreshNormalHeader
+    {
+        // @property (readonly, nonatomic, weak) UIImageView * arrowView;
+        [Export("arrowView", ArgumentSemantic.Weak)]
+        UIImageView ArrowView { get; }
+
+        // @property (assign, nonatomic) UIActivityIndicatorViewStyle activityIndicatorViewStyle;
+        [Export("activityIndicatorViewStyle", ArgumentSemantic.Assign)]
+        UIActivityIndicatorViewStyle ActivityIndicatorViewStyle { get; set; }
+    }
+
+    // @interface MJRefreshGifHeader : MJRefreshStateHeader
+    [BaseType(typeof(MJRefreshStateHeader))]
     interface MJRefreshGifHeader
     {
-        // -(void)setImages:(NSArray *)images forState:(MJRefreshHeaderState)state;
-        [Export("setImages:forState:")]
-        //        [Verify(StronglyTypedNSArray)]
-        void SetImages(UIImage[] images, MJRefreshHeaderState state);
-    }
+        // -(void)setImages:(NSArray *)images duration:(NSTimeInterval)duration forState:(MJRefreshState)state;
+        [Export("setImages:duration:forState:")]
+        //        [Verify (StronglyTypedNSArray)]
+        void SetImages(UIImage[] images, double duration, MJRefreshState state);
 
-    // @interface MJRefreshLegendHeader : MJRefreshHeader
-    [BaseType(typeof(MJRefreshHeader))]
-    interface MJRefreshLegendHeader
-    {
+        // -(void)setImages:(NSArray *)images forState:(MJRefreshState)state;
+        [Export("setImages:forState:")]
+        //        [Verify (StronglyTypedNSArray)]
+        void SetImages(UIImage[] images, MJRefreshState state);
     }
 
     // @interface MJRefreshFooter : MJRefreshComponent
     [BaseType(typeof(MJRefreshComponent))]
     interface MJRefreshFooter
     {
+        // +(instancetype)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
+        [Static]
+        [Export("footerWithRefreshingBlock:")]
+        MJRefreshFooter FooterWithRefreshingBlock(MJRefreshComponentRefreshingBlock refreshingBlock);
+
+        // +(instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
+        [Static]
+        [Export("footerWithRefreshingTarget:refreshingAction:")]
+        MJRefreshFooter FooterWithRefreshingTarget(NSObject target, Selector action);
+
         // -(void)noticeNoMoreData;
         [Export("noticeNoMoreData")]
         void NoticeNoMoreData();
@@ -345,19 +284,60 @@ namespace MJRefresh
         // -(void)resetNoMoreData;
         [Export("resetNoMoreData")]
         void ResetNoMoreData();
+    }
 
-        // @property (assign, nonatomic) MJRefreshFooterState state;
-        [Export("state", ArgumentSemantic.Assign)]
-        MJRefreshFooterState State { get; set; }
 
-        // @property (getter = isStateHidden, assign, nonatomic) BOOL stateHidden;
-        [Export("stateHidden")]
-        bool StateHidden { [Bind ("isStateHidden")] get; set; }
+    // @interface MJRefreshBackFooter : MJRefreshFooter
+    [BaseType(typeof(MJRefreshFooter))]
+    interface MJRefreshBackFooter
+    {
+    }
 
-        // -(void)setTitle:(NSString *)title forState:(MJRefreshFooterState)state;
+    // @interface MJRefreshBackStateFooter : MJRefreshBackFooter
+    [BaseType(typeof(MJRefreshBackFooter))]
+    interface MJRefreshBackStateFooter
+    {
+        // @property (readonly, nonatomic, weak) UILabel * stateLabel;
+        [Export("stateLabel", ArgumentSemantic.Weak)]
+        UILabel StateLabel { get; }
+
+        // -(void)setTitle:(NSString *)title forState:(MJRefreshState)state;
         [Export("setTitle:forState:")]
-        void SetTitle(string title, MJRefreshFooterState state);
+        void SetTitle(string title, MJRefreshState state);
+    }
 
+    // @interface MJRefreshBackNormalFooter : MJRefreshBackStateFooter
+    [BaseType(typeof(MJRefreshBackStateFooter))]
+    interface MJRefreshBackNormalFooter
+    {
+        // @property (readonly, nonatomic, weak) UIImageView * arrowView;
+        [Export("arrowView", ArgumentSemantic.Weak)]
+        UIImageView ArrowView { get; }
+
+        // @property (assign, nonatomic) UIActivityIndicatorViewStyle activityIndicatorViewStyle;
+        [Export("activityIndicatorViewStyle", ArgumentSemantic.Assign)]
+        UIActivityIndicatorViewStyle ActivityIndicatorViewStyle { get; set; }
+    }
+
+    // @interface MJRefreshBackGifFooter : MJRefreshBackStateFooter
+    [BaseType(typeof(MJRefreshBackStateFooter))]
+    interface MJRefreshBackGifFooter
+    {
+        // -(void)setImages:(NSArray *)images duration:(NSTimeInterval)duration forState:(MJRefreshState)state;
+        [Export("setImages:duration:forState:")]
+        //        [Verify (StronglyTypedNSArray)]
+        void SetImages(UIImage[] images, double duration, MJRefreshState state);
+
+        // -(void)setImages:(NSArray *)images forState:(MJRefreshState)state;
+        [Export("setImages:forState:")]
+        //        [Verify (StronglyTypedNSArray)]
+        void SetImages(UIImage[] images, MJRefreshState state);
+    }
+
+    // @interface MJRefreshAutoFooter : MJRefreshFooter
+    [BaseType(typeof(MJRefreshFooter))]
+    interface MJRefreshAutoFooter
+    {
         // @property (getter = isAutomaticallyRefresh, assign, nonatomic) BOOL automaticallyRefresh;
         [Export("automaticallyRefresh")]
         bool AutomaticallyRefresh { [Bind ("isAutomaticallyRefresh")] get; set; }
@@ -367,131 +347,44 @@ namespace MJRefresh
         nfloat AppearencePercentTriggerAutoRefresh { get; set; }
     }
 
-    // @interface MJRefreshGifFooter : MJRefreshFooter
-    [BaseType(typeof(MJRefreshFooter))]
-    interface MJRefreshGifFooter
+    // @interface MJRefreshAutoStateFooter : MJRefreshAutoFooter
+    [BaseType(typeof(MJRefreshAutoFooter))]
+    interface MJRefreshAutoStateFooter
     {
-        // @property (nonatomic, strong) NSArray * refreshingImages;
-        [Export("refreshingImages", ArgumentSemantic.Strong)]
+        // @property (readonly, nonatomic, weak) UILabel * stateLabel;
+        [Export("stateLabel", ArgumentSemantic.Weak)]
+        UILabel StateLabel { get; }
+
+        // -(void)setTitle:(NSString *)title forState:(MJRefreshState)state;
+        [Export("setTitle:forState:")]
+        void SetTitle(string title, MJRefreshState state);
+
+        // @property (getter = isRefreshingTitleHidden, assign, nonatomic) BOOL refreshingTitleHidden;
+        [Export("refreshingTitleHidden")]
+        bool RefreshingTitleHidden { [Bind ("isRefreshingTitleHidden")] get; set; }
+    }
+
+    // @interface MJRefreshAutoNormalFooter : MJRefreshAutoStateFooter
+    [BaseType(typeof(MJRefreshAutoStateFooter))]
+    interface MJRefreshAutoNormalFooter
+    {
+        // @property (assign, nonatomic) UIActivityIndicatorViewStyle activityIndicatorViewStyle;
+        [Export("activityIndicatorViewStyle", ArgumentSemantic.Assign)]
+        UIActivityIndicatorViewStyle ActivityIndicatorViewStyle { get; set; }
+    }
+
+    // @interface MJRefreshAutoGifFooter : MJRefreshAutoStateFooter
+    [BaseType(typeof(MJRefreshAutoStateFooter))]
+    interface MJRefreshAutoGifFooter
+    {
+        // -(void)setImages:(NSArray *)images duration:(NSTimeInterval)duration forState:(MJRefreshState)state;
+        [Export("setImages:duration:forState:")]
         //        [Verify(StronglyTypedNSArray)]
-        UIImage[] RefreshingImages { get; set; }
-    }
+        void SetImages(UIImage[] images, double duration, MJRefreshState state);
 
-    // @interface MJRefreshLegendFooter : MJRefreshFooter
-    [BaseType(typeof(MJRefreshFooter))]
-    interface MJRefreshLegendFooter
-    {
-    }
-
-    // @interface MJExtension (UIScrollView)
-    [Category]
-    [BaseType(typeof(UIScrollView))]
-    interface UIScrollView_MJExtension
-    {
-        // @property (assign, nonatomic) CGFloat mj_insetT;
-        [Export("getmj_insetT")]
-        nfloat GetMj_insetT();
-
-        [Export("setmj_insetT")]
-        void SetMj_insetT(nfloat value);
-
-        // @property (assign, nonatomic) CGFloat mj_insetB;
-        [Export("getmj_insetB")]
-        nfloat GetMj_insetB();
-
-        [Export("setmj_insetB")]
-        void SetMj_insetB(nfloat value);
-
-        // @property (assign, nonatomic) CGFloat mj_insetL;
-        [Export("getmj_insetL")]
-        nfloat GetMj_insetL();
-
-        [Export("setmj_insetL")]
-        void SetMj_insetL(nfloat value);
-
-        // @property (assign, nonatomic) CGFloat mj_insetR;
-        [Export("getmj_insetR")]
-        nfloat GetMj_insetR();
-
-        [Export("setmj_insetR")]
-        void SetMj_insetR(nfloat value);
-
-        // @property (assign, nonatomic) CGFloat mj_offsetX;
-        [Export("getmj_offsetX")]
-        nfloat GetMj_offsetX();
-
-        [Export("setmj_offsetX")]
-        void SetMj_offsetX(nfloat value);
-
-        // @property (assign, nonatomic) CGFloat mj_offsetY;
-        [Export("getmj_offsetY")]
-        nfloat GetMj_offsetY();
-
-        [Export("setmj_offsetY")]
-        void SetMj_offsetY(nfloat value);
-
-        // @property (assign, nonatomic) CGFloat mj_contentSizeW;
-        [Export("getmj_contentSizeW")]
-        nfloat GetMj_contentSizeW();
-
-        [Export("setmj_contentSizeW")]
-        void SetMj_contentSizeW(nfloat value);
-
-        // @property (assign, nonatomic) CGFloat mj_contentSizeH;
-        [Export("getmj_contentSizeH")]
-        nfloat GetMj_contentSizeH();
-
-        [Export("setmj_contentSizeH")]
-        void SetMj_contentSizeH(nfloat value);
-
-    }
-
-    // @interface MJExtension (UIView)
-    [Category]
-    [BaseType(typeof(UIView))]
-    interface UIView_MJExtension
-    {
-        // @property (assign, nonatomic) CGFloat mj_x;
-        [Export("getmj_x")]
-        nfloat GetMj_X();
-
-        [Export("setmj_x")]
-        void SetMj_X(nfloat value);
-
-        // @property (assign, nonatomic) CGFloat mj_y;
-        [Export("getmj_y")]
-        nfloat GetMj_Y();
-
-        [Export("setmj_y")]
-        void SetMj_Y(nfloat value);
-
-        // @property (assign, nonatomic) CGFloat mj_w;
-        [Export("getmj_w")]
-        nfloat GetMj_W();
-
-        [Export("setmj_w")]
-        void SetMj_W(nfloat value);
-
-        // @property (assign, nonatomic) CGFloat mj_h;
-        [Export("getmj_h")]
-        nfloat GetMj_H();
-
-        [Export("setmj_h")]
-        void SetMj_H(nfloat value);
-
-        // @property (assign, nonatomic) CGSize mj_size;
-        [Export("getmj_size")]
-        CGSize GetMj_Size();
-
-        [Export("setmj_size")]
-        void SetMj_Size(CGSize value);
-
-        // @property (assign, nonatomic) CGPoint mj_origin;
-
-        [Export("getmj_origin")]
-        CGPoint GetMj_Origin();
-
-        [Export("setmj_origin")]
-        void SetMj_Origin(CGPoint value);
+        // -(void)setImages:(NSArray *)images forState:(MJRefreshState)state;
+        [Export("setImages:forState:")]
+        //        [Verify(StronglyTypedNSArray)]
+        void SetImages(UIImage[] images, MJRefreshState state);
     }
 }

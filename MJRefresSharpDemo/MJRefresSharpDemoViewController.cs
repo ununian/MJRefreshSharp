@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MJRefresh;
 using ObjCRuntime;
+using System.Threading.Tasks;
 
 namespace MJRefresSharpDemo
 {
@@ -53,14 +54,21 @@ namespace MJRefresSharpDemo
             };
 
             View.AddSubview(addBtn);
-            TableView.AddLegendHeaderWithRefreshingBlock(() =>
-                {
-                    for (int i = 0; i < 10; i++)
-                    {
-                        Source.Add("TestData : " + r.Next(1000, 10000));    
-                    }
-                    TableView.HeaderEndRefreshing();
-                });
+
+            var header = new MJRefreshNormalHeader();
+            TableView.SetHeader(header);
+
+            header.RefreshingBlock = async () =>
+            { 
+                Source.Add("TestData : " + r.Next(1000, 10000));    
+                await Task.Delay(1000);
+                header.EndRefreshing();
+            };
+            
+            header.SetTitle("AA", MJRefreshState.Idle);
+            header.SetTitle("BB", MJRefreshState.Pulling);
+            header.SetTitle("CC", MJRefreshState.Refreshing);
+            header.LastUpdatedTimeLabel.Hidden = true;
         }
 
         public void LoadData()
